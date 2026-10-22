@@ -1,0 +1,62 @@
+# Maven
+target/
+**/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Cargo / embedded Tomcat runtime files
+**/target/cargo/
+**/target/*cargo*.log
+**/target/*cargo*.log.*
+
+# Maven release and build output
+release.properties
+dependency-reduced-pom.xml
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+.factorypath
+.springBeans
+.sts4-cache
+.apt_generated/
+
+# NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Visual Studio Code
+.vscode/
+
+# Logs and runtime files
+*.log
+*.pid
+hs_err_pid*.log
+
+# Java / IDE temporary files
+*.class
+*.jar.original
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Windows generated files
+$RECYCLE.BIN/
+*.stackdump
