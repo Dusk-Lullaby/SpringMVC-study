@@ -74,6 +74,8 @@
                         <home>${project.build.directory}/cargo/configuration</home>
                         <properties>
                             <cargo.servlet.port>8088</cargo.servlet.port>
+                            <cargo.tomcat.uriencoding>UTF-8</cargo.tomcat.uriencoding>
+                            <cargo.start.jvmargs>-Dfile.encoding=UTF-8 -Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8</cargo.start.jvmargs>
                         </properties>
                     </configuration>
                     <deployables>
