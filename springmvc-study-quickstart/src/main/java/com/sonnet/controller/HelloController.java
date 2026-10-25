@@ -1,6 +1,7 @@
 package com.sonnet.controller;
 
 import com.sonnet.pojo.Account;
+import com.sonnet.pojo.Student;
 import com.sonnet.pojo.User;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -8,12 +9,17 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.random.RandomGenerator;
 
 // http://localhost:8088/demo1/hello
 @Controller
@@ -167,4 +173,129 @@ public class HelloController {
         sessionStatus.setComplete(); // 清空session作用域中的数据
         return "success";
     }
+
+
+/*
+    @ModelAttribute
+    public Student showModel(String username, Integer age) {
+        System.out.println(username + " => " + age);
+        Student student = new Student();
+        student.setAge(age);
+        student.setUsername(username);
+        // 模拟通过查询数据库操作，将password这个字段的值补全
+        student.setPassword("admin123");
+        return student;
+    }
+*/
+
+    @ModelAttribute
+    public void showModel(String username, Integer age, Map<String, Object> map) {
+        //System.out.println(username + " => " + age);
+        Student student = new Student();
+        student.setAge(age);
+        student.setUsername(username);
+        // 模拟通过查询数据库操作，将password这个字段的值补全
+        student.setPassword("admin125");
+        map.put("student", student);
+    }
+
+
+    @RequestMapping("/showStudent")
+    public String showStudent(@ModelAttribute("student") Student student) {
+        System.out.println("showStudent is running");
+        System.out.println(student);
+        return "success";
+    }
+
+    @RequestMapping("testPathVariable/{id}/{username}")
+    public String testPathVariable(@PathVariable("id") Integer id,
+                                   @PathVariable("username") String username) {
+        System.out.println(id + " => " + username);
+        return "success";
+    }
+
+    @RequestMapping("/testMatrixVariable/{id}")
+    public String testMatrixVariable(@PathVariable("id") Integer id,
+                                     @MatrixVariable("name") String name,
+                                     @MatrixVariable("ages") List<Integer> ages) {
+        System.out.println(id);
+        System.out.println(name);
+        System.out.println(ages);
+        return "success";
+    }
+
+    // 测试控制器方法的返回值是void
+    @RequestMapping("/testVoid")
+    public void testVoid(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+        try {
+            System.out.println("testVoid is running");
+/*
+            // 实现转发效果
+            httpServletRequest.getRequestDispatcher("/pages/success.jsp").forward(httpServletRequest, httpServletResponse);
+*/
+
+            // 实现重定向效果
+            httpServletResponse.sendRedirect("/pages/success.jsp");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // 测试返回值是ModelAndView
+    @RequestMapping("/testModelAndView")
+    public ModelAndView testModelAndView() {
+        ModelAndView modelAndView = new ModelAndView();
+        // 向作用域中存储数据
+        modelAndView.addObject("username", "jia");
+        // 转发效果, 设置视图名称
+        modelAndView.setViewName("success");
+        return modelAndView;
+    }
+
+    // 测试request作用域传值
+    @RequestMapping("/testRequest")
+    public void testRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+        try {
+            httpServletRequest.setAttribute("username", "jia");
+            httpServletRequest.getRequestDispatcher("/pages/success.jsp").forward(httpServletRequest, httpServletResponse);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // 使用Map集合进行作用域对象传值
+    @RequestMapping("/testMap")
+    public String testMap(Map<String, Object> map) {
+        map.put("username", "jiayi");
+        return "success";
+    }
+
+    // 使用Model对象进行域对象的传值
+    @RequestMapping("/testModel")
+    public String testModel(Model model) {
+        model.addAttribute("username", "jiayi");
+        return "success";
+    }
+
+    @RequestMapping("/toSuccess")
+    public String toSuccess() {
+        return "success";
+    }
+
+    // 使用forward关键字实现转发效果
+    @RequestMapping("/testForward")
+    public String testForward() {
+        //return "forward:/pages/success.jsp";
+        return "forward:/demo1/toSuccess";
+    }
+
+    // 使用redirect关键字实现重定向
+    @RequestMapping("/testRedirect")
+    public String testRedirect() {
+        //return "redirect:/pages/success.jsp";
+        return "redirect:/demo1/toSuccess";
+    }
 }
+

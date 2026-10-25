@@ -68,5 +68,26 @@
     <a href="${pageContext.request.contextPath}/demo1/putSession">在session域中存储数据</a> <br>
     <a href="${pageContext.request.contextPath}/demo1/getSession">向session域中获取数据</a> <br>
     <a href="${pageContext.request.contextPath}/demo1/removeSession">清除session域中的数据</a> <br>
+
+    <form action="${pageContext.request.contextPath}/demo1/showStudent" method="post">
+        username:<input type="text" name="username"> <br>
+        age:<input type="text" name="age"> <br>
+        <input type="submit" value="提交">
+    </form>
+
+    <a href="${pageContext.request.contextPath}/demo1/testPathVariable/1001/jia">[测试PathVariable注解的使用]</a>
+    <br>
+
+    <a href="${pageContext.request.contextPath}/demo1/testMatrixVariable/1;name=jia;ages=10,11,12">[测试矩阵变量]</a>
+    <br>
+
+    <a href="${pageContext.request.contextPath}/demo1/testVoid">[返回值是void]</a>
+    <br>
+    <a href="${pageContext.request.contextPath}/demo1/testModelAndView">[返回值是ModelAndView]</a>
+    <br>
+
+    <a href="${pageContext.request.contextPath}/demo1/testRequest">[测试request作用域传值]</a> <br>
+    <a href="${pageContext.request.contextPath}/demo1/testMap">[使用Map对象进行域对象的传值]</a> <br>
+    <a href="${pageContext.request.contextPath}/demo1/testModel">[使用Model对象进行域对象的传值]</a> <br>
 </body>
 </html>

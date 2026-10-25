@@ -31,8 +31,15 @@
     <mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
 
     <!--
-        开启处理器映射器 处理器适配器的自动配置
-        在annotation-driven标签中引用配置类型转换服务
+        path：设置请求的url
+        view-name：设置视图名称
     -->
-    <mvc:annotation-driven conversion-service="conversionServiceFactoryBean"></mvc:annotation-driven>
+    <mvc:view-controller path="/hello/demo1" view-name="success"></mvc:view-controller>
+
+    <!--
+        开启处理器映射器 处理器适配器的自动配置
+        在annotation-driven标签中引用配置类型转换服务 conversion-service="conversionServiceFactoryBean"
+        开启springMVC对矩阵变量的支持 enable-matrix-variables="true"
+    -->
+    <mvc:annotation-driven enable-matrix-variables="true" conversion-service="conversionServiceFactoryBean"></mvc:annotation-driven>
 </beans>
