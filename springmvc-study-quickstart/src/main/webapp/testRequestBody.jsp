@@ -12,6 +12,14 @@
 </head>
 <body>
     <input type="button" value="按钮" id="testJson">
+
+    <%--定义一个表单--%>
+    <form action="${pageContext.request.contextPath}/demo2/testRequestEntity" method="post">
+        用户名：<input type="text" name="username"> <br>
+        用户密码：<input type="password" name="password"> <br>
+        用户年龄：<input type="text" name="age"> <br>
+        <input type="submit" value="提交">
+    </form>
 </body>
 <script src="js/jquery-1.9.1.js"></script>
 <script type="text/javascript">

@@ -8,6 +8,12 @@ public class Account {
 
     private Double money;
 
+    public Account(Integer id, String name, Double money) {
+        this.id = id;
+        this.name = name;
+        this.money = money;
+    }
+
     @Override
     public String toString() {
         return "Account{" +

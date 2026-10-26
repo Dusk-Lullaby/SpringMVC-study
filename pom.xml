@@ -11,6 +11,8 @@
     <modules>
         <module>springmvc-study-quickstart</module>
         <module>springmvc-study-project-restful</module>
+        <module>springmvc-study-file</module>
+        <module>springmvc-study-exception</module>
     </modules>
 
     <properties>
