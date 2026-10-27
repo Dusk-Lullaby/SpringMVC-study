@@ -13,6 +13,8 @@
         <module>springmvc-study-project-restful</module>
         <module>springmvc-study-file</module>
         <module>springmvc-study-exception</module>
+        <module>springmvc-study-interceptor</module>
+        <module>springmvc-study-annotation</module>
     </modules>
 
     <properties>
